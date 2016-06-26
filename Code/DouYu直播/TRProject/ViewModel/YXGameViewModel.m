@@ -66,7 +66,7 @@
     return self.gameList[row].title;
 }
 - (NSURL *)idVideoForRow:(NSInteger)row{
-    return [NSURL URLWithString:[NSString stringWithFormat:kBaoFangPath,self.gameList[row].uid]];
+    return [NSString stringWithFormat:kBaoFangPath,self.gameList[row].uid].yx_URL;
     
 }
 @end

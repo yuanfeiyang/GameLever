@@ -15,9 +15,53 @@
             DDLogError(@"%@",error);
         }else{
         _TuiJianModel = model;
+        _List = _TuiJianModel.list;
+        _tuiJianList = @[_TuiJianModel.mobileRecommendation,
+                             _TuiJianModel.mobileLol,
+                             _TuiJianModel.mobileBeauty,
+                             _TuiJianModel.mobileTvgame,
+                             _TuiJianModel.mobileHeartstone,
+                             _TuiJianModel.mobileDota2,
+                             _TuiJianModel.mobileBlizzard,
+                             _TuiJianModel.mobileDnf,
+                             _TuiJianModel.mobileSport,
+                             _TuiJianModel.mobileMinecraft,
+                             _TuiJianModel.mobileWebgame
+                             ];
+        
         !completionHandler ?: completionHandler(error);
         }
     }];
+}
+- (NSInteger)sectionNumber{
+    return self.tuiJianList.count;
+}
+- (NSInteger)rowInSection:(NSInteger)section{
+    return self.tuiJianList[section].count;
+}
+- (NSURL *)iconURLInSection:(NSInteger)section ForRow:(NSInteger)row{
+    return self.tuiJianList[section][row].linkObject.thumb.yx_URL;
+}
+- (NSString *)numberInSection:(NSInteger)section ForRow:(NSInteger)row{
+    NSInteger tmpNum = self.tuiJianList[section][row].linkObject.view.intValue;
+    if (tmpNum>10000) {
+        return [NSString stringWithFormat:@"%.lf万",tmpNum/10000.0];
+    }
+    return self.tuiJianList[section][row].linkObject.view;
+}
+- (NSString *)leftLbInSection:(NSInteger)section ForRow:(NSInteger)row{
+    return self.tuiJianList[section][row].linkObject.nick;
+}
+- (NSString *)titleInSection:(NSInteger)section ForRow:(NSInteger)row{
+    return self.tuiJianList[section][row].linkObject.title;
+}
+- (NSURL *)idVideoInSection:(NSInteger)section ForRow:(NSInteger)row{
+    return [NSString stringWithFormat:kBaoFangPath,self.tuiJianList[section][row].linkObject.uid].yx_URL;
+}
+
+//组标题
+- (NSString *)sectionTitle:(NSInteger)section{
+    return self.List[section+2].name;
 }
 
 @end
