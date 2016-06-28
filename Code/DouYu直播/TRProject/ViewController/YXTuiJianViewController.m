@@ -8,17 +8,31 @@
 
 #import "YXTuiJianViewController.h"
 #import "YXTuiJianViewModel.h"
+#import "YXCollectionReusableView.h"
+#import "YXGameListViewController.h"
+#import "YXGameListCodeViewController.h"
+#import "YXFirstTopReusableView.h"
+@import AVFoundation;
+@import AVKit;
 
 @interface YXTuiJianViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 /** <#属性描述#> */
 @property (nonatomic) YXTuiJianViewModel *tuiJianVM;
+
 @end
+
+
+CGFloat num = 0;
 
 @implementation YXTuiJianViewController
 
+
 static NSString * const reuseIdentifier = @"Cell";
+#pragma mark - iCarousel Delegate
 
 #pragma mark - LazyLoad 懒加载
+
+
 - (YXTuiJianViewModel *)tuiJianVM{
     if (!_tuiJianVM) {
         _tuiJianVM = [YXTuiJianViewModel new];
@@ -28,6 +42,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.collectionView registerClass:[YXCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView"];
+    [self.collectionView registerClass:[YXFirstTopReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+    
     [self.tuiJianVM getTuiJianCompletionHandler:^(NSError *error) {
         if (error) {
             DDLogError(@"%@",error);
@@ -53,34 +70,120 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 */
 
-#pragma mark <UICollectionViewDataSource>
-/*
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    if (kind == UICollectionElementKindSectionHeader) {
-        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"Header" forIndexPath:indexPath];
-        
-        UIImageView *headerIconL = (UIImageView *)[view viewWithTag:1000];
-        UIImageView *headerIconR = (UIImageView *)[view viewWithTag:4000];
-        UILabel *headerLbL = (UILabel *)[view viewWithTag:2000];
-        UILabel *headerLbR = (UILabel *)[view viewWithTag:3000];
-        
-        headerLbL.text = [self.tuiJianVM sectionTitle:indexPath.section];
-        headerIconL.image = [UIImage imageNamed:@"栏目标题@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.22935.000.00."];
-        if (indexPath.section == 0) {
-            headerIconR.image = [UIImage imageNamed:@"刷新-按下@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.45740.000.00."];
-            headerLbR.text = @"换一换";
-        }else{
-            headerIconR.image = [UIImage imageNamed:@"更多@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.4253.000.00."];
-            headerLbR.text = @"更多";
-        }
-
-        return view;
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return CGSizeMake(kScreenW, 400);
     }
+    return CGSizeMake(kScreenW, 50);
     
-    return nil;
+}
+
+
+- (void)controlClicked:(UIControl *)sender{
+    NSLog(@"111111");
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+    
+    flowLayout.minimumLineSpacing = 10;
+    flowLayout.minimumInteritemSpacing = 10;
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    CGFloat width = (kScreenW-30)/2;
+    CGFloat height = width*219/310+30;
+    flowLayout.itemSize = CGSizeMake(width, height);
+    YXGameListCodeViewController *gameVC = [[YXGameListCodeViewController alloc]initWithCollectionViewLayout:flowLayout];
+//    if (!sender.tag) {
+//        if (num >= 4) {
+//            num = 0;
+//        }
+//        num+=2;
+//        [self.collectionView reloadData];
+//        
+//    }else{
+    gameVC.titleName = [self.tuiJianVM nameInSection:sender.tag];
+    gameVC.gameStr = [self.tuiJianVM categorySlugInSection:sender.tag];
+    [self.navigationController pushViewController:gameVC animated:YES];
+        
+//    }
+    
+    
 
 }
- */
+
+- (void)topControlerClicked:(UIControl *)sender{
+    if (num >= 4) {
+        num = 0;
+    }else{
+    num+=2;
+    }
+    [self.collectionView reloadData];
+}
+
+#pragma mark <UICollectionViewDataSource>
+
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+     UICollectionReusableView *reusableview = nil ;
+    if (kind == UICollectionElementKindSectionHeader) {
+       
+        
+        if (indexPath.section == 0) {
+            YXFirstTopReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+            header.control.tag = indexPath.section;
+            [header.control addTarget:self action:@selector(topControlerClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [header getHeaderViewWithMobileIndexList:self.tuiJianVM.TuiJianModel.mobileIndex MobileStarList:self.tuiJianVM.TuiJianModel.mobileStar CompletionHandler:^{
+                [header.ic reloadData];
+                
+               
+            }];
+            header.iconImageR.image = [UIImage imageNamed:@"刷新-按下@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.45740.000.00."];
+            header.headerLbR.text = @"换一换";
+            header.iconImageL.image = [UIImage imageNamed:@"栏目标题@2x.png"];
+            header.headerLbL.text = [self.tuiJianVM sectionTitle:indexPath.section];
+            reusableview = header;
+            
+        }else{
+            YXCollectionReusableView  *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerView" forIndexPath:indexPath];
+            headerView.iconImageL.image = [UIImage imageNamed:@"栏目标题@2x.png"];
+            headerView.headerLbL.text = [self.tuiJianVM sectionTitle:indexPath.section];
+            headerView.control.tag = indexPath.section;
+            [headerView.control addTarget:self action:@selector(controlClicked:) forControlEvents:UIControlEventTouchUpInside];
+            headerView.iconImageR.image = [UIImage imageNamed:@"更多@2x.png"];
+            headerView.headerLbR.text = @"更多";
+            reusableview = headerView;
+        }
+       
+        
+        
+//        UIImageView *headerIconL = (UIImageView *)[view viewWithTag:1000];
+//        UIImageView *headerIconR = (UIImageView *)[view viewWithTag:4000];
+//        UILabel *headerLbL = (UILabel *)[view viewWithTag:2000];
+//        UILabel *headerLbR = (UILabel *)[view viewWithTag:3000];
+        
+//        headerLbL.text = [self.tuiJianVM sectionTitle:indexPath.section];
+//        headerIconL.image = [UIImage imageNamed:@"栏目标题@2x.png"];
+//        if (indexPath.section == 0) {
+//           // headerIconR.image = [UIImage imageNamed:@"刷新-按下@2x.png"];
+//            headerLbR.text = @"换一换";
+//        }else{
+//            headerIconR.image = [UIImage imageNamed:@"更多@2x.png"];
+//            headerLbR.text = @"更多";
+//        }
+//
+//        reusableview = view;
+   }
+    
+//    if (kind == UICollectionElementKindSectionFooter){
+//        
+//        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter  withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
+//        
+//        reusableview = footerview;
+//        
+//    }
+    
+return reusableview;
+
+}
+ 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat width = (kScreenW-30)/2;
     CGFloat height = width*201/348+30;
@@ -95,8 +198,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-    return [self.tuiJianVM rowInSection:section];;
+    
+    
+    //return [self.tuiJianVM rowInSection:section];
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,21 +211,32 @@ static NSString * const reuseIdentifier = @"Cell";
     UILabel *leftLb = (UILabel *)[cell.contentView viewWithTag:200];
     UILabel *numLb = (UILabel *)[cell.contentView viewWithTag:300];
     UILabel *titleLb = (UILabel *)[cell.contentView viewWithTag:400];
-    
+    if (indexPath.section == 0) {
+        [iconImage setImageURL:[self.tuiJianVM iconURLInSection:indexPath.section ForRow:indexPath.row+num]];
+        leftLb.text = [self.tuiJianVM leftLbInSection:indexPath.section ForRow:indexPath.row+num];
+        numLb.text = [self.tuiJianVM numberInSection:indexPath.section ForRow:indexPath.row+num];
+        titleLb.text = [self.tuiJianVM titleInSection:indexPath.section ForRow:indexPath.row+num];
+    }else{
    
     
     [iconImage setImageURL:[self.tuiJianVM iconURLInSection:indexPath.section ForRow:indexPath.row]];
     leftLb.text = [self.tuiJianVM leftLbInSection:indexPath.section ForRow:indexPath.row];
     numLb.text = [self.tuiJianVM numberInSection:indexPath.section ForRow:indexPath.row];
     titleLb.text = [self.tuiJianVM titleInSection:indexPath.section ForRow:indexPath.row];
-    
+    }
     
     
     
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    AVPlayerViewController *playVC = [[AVPlayerViewController alloc]init];
+    playVC.player = [[AVPlayer alloc]initWithURL:[self.tuiJianVM videoInSection:indexPath.section ForRow:indexPath.row]];
+    [self.navigationController pushViewController:playVC animated:YES];
+    [playVC.player play];
 
+}
 
 #pragma mark <UICollectionViewDelegate>
 

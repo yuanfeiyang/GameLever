@@ -233,49 +233,9 @@
                                 <size key="customSize" width="232" height="207"/>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="TtA-5S-rA3">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="kJD-WK-p06">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vhh-hc-ogv">
-                                    <rect key="frame" x="8" y="8" width="30" height="34"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="Ged-3J-EOC"/>
-                                    </constraints>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="3000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssf-XG-aw2">
-                                    <rect key="frame" x="46" y="8" width="42" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="4000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeC-5M-bce">
-                                    <rect key="frame" x="270" y="8" width="42" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView userInteractionEnabled="NO" tag="2000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rtL-Ng-Xze">
-                                    <rect key="frame" x="232" y="8" width="30" height="34"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="Rir-xp-KNg"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="GeC-5M-bce" firstAttribute="leading" secondItem="rtL-Ng-Xze" secondAttribute="trailing" constant="8" id="63C-HC-3b6"/>
-                                <constraint firstItem="Ssf-XG-aw2" firstAttribute="top" secondItem="TtA-5S-rA3" secondAttribute="top" constant="8" id="9ay-Zp-mSz"/>
-                                <constraint firstAttribute="bottom" secondItem="GeC-5M-bce" secondAttribute="bottom" constant="8" id="ADf-r3-mvz"/>
-                                <constraint firstItem="vhh-hc-ogv" firstAttribute="leading" secondItem="TtA-5S-rA3" secondAttribute="leading" constant="8" id="FZt-ST-of9"/>
-                                <constraint firstAttribute="bottom" secondItem="rtL-Ng-Xze" secondAttribute="bottom" constant="8" id="Xct-wR-Na1"/>
-                                <constraint firstItem="vhh-hc-ogv" firstAttribute="top" secondItem="TtA-5S-rA3" secondAttribute="top" constant="8" id="XdO-qE-jzK"/>
-                                <constraint firstAttribute="trailing" secondItem="GeC-5M-bce" secondAttribute="trailing" constant="8" id="d2m-S7-N6C"/>
-                                <constraint firstAttribute="bottom" secondItem="vhh-hc-ogv" secondAttribute="bottom" constant="8" id="mLa-8d-GeD"/>
-                                <constraint firstItem="GeC-5M-bce" firstAttribute="top" secondItem="TtA-5S-rA3" secondAttribute="top" constant="8" id="mvi-AX-Mle"/>
-                                <constraint firstItem="rtL-Ng-Xze" firstAttribute="top" secondItem="TtA-5S-rA3" secondAttribute="top" constant="8" id="qjq-Hl-p4x"/>
-                                <constraint firstAttribute="bottom" secondItem="Ssf-XG-aw2" secondAttribute="bottom" constant="8" id="rXS-CY-7zr"/>
-                                <constraint firstItem="Ssf-XG-aw2" firstAttribute="leading" secondItem="vhh-hc-ogv" secondAttribute="trailing" constant="8" id="wp6-bm-4OW"/>
-                            </constraints>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="HK8-N1-msd" id="lTe-Iz-E5h"/>
@@ -283,7 +243,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Vmt-vt-uKG">
-                        <barButtonItem key="leftBarButtonItem" image="刷新-按下@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.45740.000.00." id="FIy-qo-7YG"/>
+                        <barButtonItem key="leftBarButtonItem" image="发现-焦点@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.18619.000.00." id="FIy-qo-7YG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="9X9-kM-vVv"/>
                     </navigationItem>
                 </collectionViewController>
@@ -821,7 +781,6 @@
     <resources>
         <image name="主播名@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.3996.000.00." width="10" height="10"/>
         <image name="全屏返回-默认@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.38840.000.00." width="45" height="45"/>
-        <image name="刷新-按下@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.45740.000.00." width="33" height="33"/>
         <image name="发现-焦点@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.18619.000.00." width="26" height="26"/>
         <image name="发现-默认@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.53246.000.00." width="26" height="26"/>
         <image name="我的-焦点@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.11035.000.00." width="26" height="26"/>

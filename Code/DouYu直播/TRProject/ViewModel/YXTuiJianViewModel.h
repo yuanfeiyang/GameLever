@@ -39,5 +39,13 @@
 - (NSURL *)idVideoInSection:(NSInteger)section ForRow:(NSInteger)row;
 //组标题
 - (NSString *)sectionTitle:(NSInteger)section;
+- (NSString *)categorySlugInSection:(NSInteger)section;
+- (NSString *)nameInSection:(NSInteger)section;
+//滚动图片数量
+- (NSURL *)iconTopIndex:(NSInteger)index;
+//滚动图片标题
+- (NSString *)titleTopIndex:(NSInteger)index;
+
+- (NSURL *)videoInSection:(NSInteger)section ForRow:(NSInteger)row;
 
 @end

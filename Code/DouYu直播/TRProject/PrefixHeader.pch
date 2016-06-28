@@ -59,6 +59,8 @@ static const int ddLogLevel = DDLogLevelError;
 
 #import <UIImageView+WebCache.h>  //SDWebImage
 
+#import <iCarousel.h>
+
 //#import <RESideMenu.h>          //QQ的左侧菜单风格
 
 //#import <MWPhotoBrowser.h>      //图片浏览器

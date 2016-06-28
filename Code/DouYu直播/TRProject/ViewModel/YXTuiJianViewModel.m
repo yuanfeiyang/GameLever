@@ -58,10 +58,25 @@
 - (NSURL *)idVideoInSection:(NSInteger)section ForRow:(NSInteger)row{
     return [NSString stringWithFormat:kBaoFangPath,self.tuiJianList[section][row].linkObject.uid].yx_URL;
 }
-
+- (NSString *)categorySlugInSection:(NSInteger)section{
+    return self.tuiJianList[section][0].linkObject.categorySlug;
+}
+- (NSString *)nameInSection:(NSInteger)section{
+    return self.tuiJianList[section][0].linkObject.categoryName;
+}
 //组标题
 - (NSString *)sectionTitle:(NSInteger)section{
+    
     return self.List[section+2].name;
 }
 
+- (NSURL *)iconTopIndex:(NSInteger)index{
+    return self.TuiJianModel.mobileIndex[index].thumb.yx_URL;
+}
+- (NSString *)titleTopIndex:(NSInteger)index{
+    return self.TuiJianModel.mobileIndex[index].title;
+}
+- (NSURL *)videoInSection:(NSInteger)section ForRow:(NSInteger)row{
+    return [NSString stringWithFormat:kBaoFangPath,self.tuiJianList[section][row].linkObject.uid].yx_URL;
+}
 @end
