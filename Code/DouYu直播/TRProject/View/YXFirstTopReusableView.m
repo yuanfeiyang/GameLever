@@ -45,7 +45,6 @@
 
 #pragma mark - iCarousel Delegate
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
-    NSLog(@"1111 %ld",self.mobileIndexList.count);
     return self.mobileIndexList.count;
 }
 
@@ -135,7 +134,7 @@
         _ic.dataSource = self;
         _ic.scrollSpeed = .2;
         [self pc];
-        NSLog(@"2222%ld",self.mobileIndexList.count);
+       
     }
 
     return _ic;
@@ -164,7 +163,6 @@
         _pc.pageIndicatorTintColor = [UIColor redColor];
         _pc.currentPageIndicatorTintColor = [UIColor blueColor];
         _pc.numberOfPages = self.mobileIndexList.count;
-        NSLog(@"%ld",self.mobileIndexList.count);
         [self.topView addSubview:_pc];
         [_pc mas_makeConstraints:^(MASConstraintMaker *make) {
             
