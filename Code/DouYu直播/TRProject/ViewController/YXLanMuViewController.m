@@ -75,10 +75,16 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
-    YXGameListViewController *vc = segue.destinationViewController;
-    vc.gameStr = [self.lanMuVM lolForRow:indexPath.row];
-    vc.titleName = [self.lanMuVM nameForRow:indexPath.row];
+    if ([segue.identifier isEqualToString:@"Search"]) {
+        
+    }else{
+        
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
+        YXGameListViewController *vc = segue.destinationViewController;
+        vc.gameStr = [self.lanMuVM lolForRow:indexPath.row];
+        vc.titleName = [self.lanMuVM nameForRow:indexPath.row];
+    }
+
     
     
 }

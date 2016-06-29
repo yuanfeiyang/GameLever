@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
-@property (nonatomic) NSMutableArray<YXQuanMingTVLinkObject *> *nameList;
+//@property (nonatomic) NSMutableArray<YXQuanMingTVLinkObject *> *nameList;
 
 
 @end
@@ -23,12 +23,12 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
-- (NSMutableArray<YXQuanMingTVLinkObject *> *)nameList{
-    if (!_nameList) {
-        _nameList = [NSMutableArray new];
-    }
-    return _nameList;
-}
+//- (NSMutableArray<YXQuanMingTVLinkObject *> *)nameList{
+//    if (!_nameList) {
+//        _nameList = [NSMutableArray new];
+//    }
+//    return _nameList;
+//}
 
 - (IBAction)leftClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -42,15 +42,28 @@ static NSString * const reuseIdentifier = @"Cell";
 
 //搜索栏内容发生变化时触发
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [self.nameList removeAllObjects];
-    NSLog(@"%@",searchText);
-    [_searchDataList enumerateObjectsUsingBlock:^(YXQuanMingTVLinkObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.nick containsString:searchText]) {
-            [self.nameList addObject:obj];
-            //NSLog(@"22222 %@",obj.nick);
-            //NSLog(@"33333 %@",self.nameList);
+    
+    [YXQuanMingNetManager getSearchWithNick:searchText CompletionHandler:^(id model, NSError *error) {
+        if (error) {
+            DDLogError(@"%@",error);
+        }else{
+            _searchModel = model;
+            _searchList = _searchModel.data.items;
         }
+        
     }];
+    
+    
+    
+//    [self.nameList removeAllObjects];
+//    NSLog(@"%@",searchText);
+//    [_searchDataList enumerateObjectsUsingBlock:^(YXQuanMingTVLinkObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([obj.nick containsString:searchText]) {
+//            [self.nameList addObject:obj];
+//            //NSLog(@"22222 %@",obj.nick);
+//            //NSLog(@"33333 %@",self.nameList);
+//        }
+//    }];
     
     
     
@@ -81,7 +94,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     AVPlayerViewController *avpVC = [[AVPlayerViewController alloc]init];
-    avpVC.player = [[AVPlayer alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:kBaoFangPath,self.nameList[indexPath.row].uid]]];
+    avpVC.player = [[AVPlayer alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:kBaoFangPath,self.searchList[indexPath.row].uid]]];
     [self.navigationController pushViewController:avpVC animated:YES];
     [avpVC.player play];
     
@@ -91,7 +104,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return self.nameList.count;
+    return self.searchList.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,10 +123,10 @@ static NSString * const reuseIdentifier = @"Cell";
     UILabel *numLb = (UILabel *)[cell.contentView viewWithTag:300];
     UILabel *titleLb = (UILabel *)[cell.contentView viewWithTag:400];
     
-    [iconImage setImageURL:[NSURL URLWithString:self.nameList[indexPath.row].thumb]];
-    leftLb.text = self.nameList[indexPath.row].nick;
-    titleLb.text = self.nameList[indexPath.row].title;
-    NSInteger tmpNum = self.nameList[indexPath.row].view.intValue;
+    [iconImage setImageURL:[NSURL URLWithString:self.searchList[indexPath.row].thumb]];
+    leftLb.text = self.searchList[indexPath.row].nick;
+    titleLb.text = self.searchList[indexPath.row].title;
+    NSInteger tmpNum = self.searchList[indexPath.row].view;
     if (tmpNum>10000) {
         numLb.text = [NSString stringWithFormat:@"%.lf万",tmpNum/10000.0];
     }else{

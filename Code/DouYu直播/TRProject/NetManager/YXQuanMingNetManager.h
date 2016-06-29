@@ -18,5 +18,8 @@
 //游戏列表
 + (id)getGameWithPage:(NSString *)page GameName:(NSString*)gameName CompletionHandler:(void(^)(id model,NSError *error))completionHandler;
 
++ (id)getSearchWithNick:(NSString *)nick CompletionHandler:(void(^)(id model,NSError *error))completionHandler;
+
+
 
 @end

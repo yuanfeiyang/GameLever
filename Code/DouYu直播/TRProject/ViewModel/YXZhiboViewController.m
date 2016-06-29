@@ -8,7 +8,6 @@
 
 #import "YXZhiboViewController.h"
 #import "YXZhiBoViewModel.h"
-#import "YXsearchCollectionView.h"
 #import "YXZhiBaoModel.h"
 #import "YXSearchViewController.h"
 
@@ -18,81 +17,15 @@
 @interface YXZhiboViewController ()<UICollectionViewDelegateFlowLayout,UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 /** <#属性描述#> */
 @property (nonatomic) YXZhiBoViewModel *zhiBoVM;
-/** <#属性描述#> */
-@property (nonatomic) UISearchBar *searchBar;
-
-/** <#属性描述#> */
-@property (nonatomic) NSMutableArray<YXQuanMingTVLinkObject *> *nameList;
-
-/** <#属性描述#> */
-@property (nonatomic) YXsearchCollectionView *collectionV;
-
-/** <#属性描述#> */
-@property (nonatomic) UICollectionViewLayout *layout;
 
 @end
-
-
 
 @implementation YXZhiboViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark - LazyLoad 懒加载
-//- (UICollectionViewLayout *)layout{
-//    if (!_layout) {
-//        _layout = [[UICollectionViewLayout alloc]init];
-//    }
-//    return _layout;
-//}
-////搜索栏内容发生变化时触发
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-//    NSLog(@"%@",searchText);
-//    [self.zhiBoVM.dataList enumerateObjectsUsingBlock:^(YXQuanMingTVLinkObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        if ([obj.nick containsString:searchText]) {
-//            [self.nameList addObject:obj];
-//            NSLog(@"1111%@",self.nameList);
-//            
-//        }
-//        [self.collectionV reloadData];
-//       
-//    }];
-//
-//}
-//
-//- (YXsearchCollectionView *)collectionV{
-//    if (!_collectionV) {
-//        _collectionV = [[YXsearchCollectionView alloc]initWithFrame:CGRectNull collectionViewLayout:self.layout];
-//        [self.collectionView addSubview:_collectionV];
-//        [_collectionV mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.bottom.equalTo(0);
-//            make.top.equalTo(20);
-//        }];
-//        _collectionV.delegate = self;
-//        _collectionV.dataSource = self;
-//    }
-//    return _collectionV;
-//}
 
-
-
-
-
-- (NSMutableArray *)nameList{
-    if (!_nameList) {
-        _nameList = [NSMutableArray new];
-    }
-    return _nameList;
-}
-
-- (UISearchBar *)searchBar{
-    if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 240, 30)];
-        _searchBar.delegate = self;
-        
-    }
-    return _searchBar;
-}
 - (YXZhiBoViewModel *)zhiBoVM{
     if (!_zhiBoVM) {
         _zhiBoVM = [YXZhiBoViewModel new];
@@ -100,22 +33,7 @@ static NSString * const reuseIdentifier = @"Cell";
     return _zhiBoVM;
 }
 
-- (IBAction)searchClick:(id)sender {
-    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
-    self.navigationItem.titleView = v;
-    
-    [v addSubview:self.searchBar];
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"全屏返回-默认@2x.png.base.universal.regular.off.horizontal.normal.active.onepartscale.onepart.38840.000.00."] style:UIBarButtonItemStyleDone target:self action:@selector(leftClicked:)];
-    self.navigationItem.leftBarButtonItem = leftItem;
-    
-}
 
-- (void)leftClicked:sender{
-    [self.searchBar removeFromSuperview];
- 
-    
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -178,12 +96,12 @@ static NSString * const reuseIdentifier = @"Cell";
 */
 
 #pragma mark <UICollectionViewDataSource>
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    YXSearchViewController *seVC = segue.destinationViewController;
-    seVC.searchDataList = self.zhiBoVM.dataList;
-    
-    
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    YXSearchViewController *seVC = segue.destinationViewController;
+//    seVC.searchDataList = self.zhiBoVM.dataList;
+//    
+//    
+//}
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

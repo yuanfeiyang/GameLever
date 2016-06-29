@@ -31,6 +31,7 @@
 		3B1D87B31D1C074B0068D10B /* YXLanMuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D87B21D1C074B0068D10B /* YXLanMuViewController.m */; };
 		3B1D87B61D1C07850068D10B /* YXLanMuViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D87B51D1C07850068D10B /* YXLanMuViewModel.m */; };
 		3B1D87B91D1C13810068D10B /* YXGameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D87B81D1C13810068D10B /* YXGameViewModel.m */; };
+		3B23F18D1D236E2300AA3F70 /* YXSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B23F18C1D236E2300AA3F70 /* YXSearchModel.m */; };
 		3B26E8A41D19567C0012E6C3 /* YXQuanMingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B26E8A31D19567C0012E6C3 /* YXQuanMingTV.m */; };
 		3B26E8A71D1971F50012E6C3 /* YXQuanMingNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B26E8A61D1971F50012E6C3 /* YXQuanMingNetManager.m */; };
 		3B3B15181D1FD0D000012C8A /* YXTuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3B15171D1FD0D000012C8A /* YXTuiJianViewController.m */; };
@@ -41,7 +42,6 @@
 		3BB4CF291D1ABBD500B4022D /* YXGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4CF281D1ABBD500B4022D /* YXGameModel.m */; };
 		3BF465481D1E2DD7002D36A1 /* YXZhiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF465471D1E2DD7002D36A1 /* YXZhiboViewController.m */; };
 		3BF4654B1D1E2ECF002D36A1 /* YXZhiBoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4654A1D1E2ECF002D36A1 /* YXZhiBoViewModel.m */; };
-		3BF4654E1D1E49F0002D36A1 /* YXsearchCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4654D1D1E49F0002D36A1 /* YXsearchCollectionView.m */; };
 		3BF465511D1E565D002D36A1 /* YXSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF465501D1E565D002D36A1 /* YXSearchViewController.m */; };
 		3BF465541D1E8166002D36A1 /* YXTuiJianViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF465531D1E8166002D36A1 /* YXTuiJianViewModel.m */; };
 /* End PBXBuildFile section */
@@ -92,6 +92,8 @@
 		3B1D87B51D1C07850068D10B /* YXLanMuViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLanMuViewModel.m; sourceTree = "<group>"; };
 		3B1D87B71D1C13810068D10B /* YXGameViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGameViewModel.h; sourceTree = "<group>"; };
 		3B1D87B81D1C13810068D10B /* YXGameViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGameViewModel.m; sourceTree = "<group>"; };
+		3B23F18B1D236E2300AA3F70 /* YXSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSearchModel.h; sourceTree = "<group>"; };
+		3B23F18C1D236E2300AA3F70 /* YXSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSearchModel.m; sourceTree = "<group>"; };
 		3B26E8A21D19567C0012E6C3 /* YXQuanMingTV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQuanMingTV.h; sourceTree = "<group>"; };
 		3B26E8A31D19567C0012E6C3 /* YXQuanMingTV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQuanMingTV.m; sourceTree = "<group>"; };
 		3B26E8A51D1971F50012E6C3 /* YXQuanMingNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXQuanMingNetManager.h; sourceTree = "<group>"; };
@@ -112,8 +114,6 @@
 		3BF465471D1E2DD7002D36A1 /* YXZhiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXZhiboViewController.m; path = ../ViewModel/YXZhiboViewController.m; sourceTree = "<group>"; };
 		3BF465491D1E2ECF002D36A1 /* YXZhiBoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXZhiBoViewModel.h; sourceTree = "<group>"; };
 		3BF4654A1D1E2ECF002D36A1 /* YXZhiBoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXZhiBoViewModel.m; sourceTree = "<group>"; };
-		3BF4654C1D1E49F0002D36A1 /* YXsearchCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXsearchCollectionView.h; sourceTree = "<group>"; };
-		3BF4654D1D1E49F0002D36A1 /* YXsearchCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXsearchCollectionView.m; sourceTree = "<group>"; };
 		3BF4654F1D1E565D002D36A1 /* YXSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSearchViewController.h; sourceTree = "<group>"; };
 		3BF465501D1E565D002D36A1 /* YXSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSearchViewController.m; sourceTree = "<group>"; };
 		3BF465521D1E8166002D36A1 /* YXTuiJianViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTuiJianViewModel.h; sourceTree = "<group>"; };
@@ -185,6 +185,8 @@
 				3BB4CF251D1AB94500B4022D /* YXLanMuModel.m */,
 				3BB4CF271D1ABBD500B4022D /* YXGameModel.h */,
 				3BB4CF281D1ABBD500B4022D /* YXGameModel.m */,
+				3B23F18B1D236E2300AA3F70 /* YXSearchModel.h */,
+				3B23F18C1D236E2300AA3F70 /* YXSearchModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,8 +254,6 @@
 				3B3B15171D1FD0D000012C8A /* YXTuiJianViewController.m */,
 				3B1BBC421D20E04800993D4A /* YXGameListCodeViewController.h */,
 				3B1BBC431D20E04800993D4A /* YXGameListCodeViewController.m */,
-				3BF4654C1D1E49F0002D36A1 /* YXsearchCollectionView.h */,
-				3BF4654D1D1E49F0002D36A1 /* YXsearchCollectionView.m */,
 				3BF4654F1D1E565D002D36A1 /* YXSearchViewController.h */,
 				3BF465501D1E565D002D36A1 /* YXSearchViewController.m */,
 			);
@@ -459,7 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BF4654B1D1E2ECF002D36A1 /* YXZhiBoViewModel.m in Sources */,
-				3BF4654E1D1E49F0002D36A1 /* YXsearchCollectionView.m in Sources */,
+				3B23F18D1D236E2300AA3F70 /* YXSearchModel.m in Sources */,
 				3B26E8A71D1971F50012E6C3 /* YXQuanMingNetManager.m in Sources */,
 				3B1D87B91D1C13810068D10B /* YXGameViewModel.m in Sources */,
 				3B3B15181D1FD0D000012C8A /* YXTuiJianViewController.m in Sources */,
